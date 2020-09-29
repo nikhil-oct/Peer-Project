@@ -21,26 +21,26 @@ public class ControllerApp{
 	MessageService messageService;
 	
 	public ControllerApp() {
-		System.out.println("Created "+this.getClass().getSimpleName());
+		logger.info("Created "+this.getClass().getSimpleName());
 	}
 
 	@RequestMapping("save")
 	public String onMessage()
 	{
-		System.out.println("Invoked onMessage");
+		logger.info("Invoked onMessage");
 		return "message";
 	}
 	
 	@RequestMapping("messageSave")
 	public String onDisplayMes(MessageEntity messageEntity,Model model) {
-		System.out.println("Invoked onDisplayMes");
+		logger.debug("Invoked onDisplayMes");
 
 		
 
 		if (Objects.nonNull(messageEntity)) {
 			
 			MessageEntity fetechedMessage= messageService.saveMessage(messageEntity);
-			logger.info(fetechedMessage);
+			logger.fatal(fetechedMessage);
 			
 			model.addAttribute("name", messageEntity.getName());
 			model.addAttribute("message", messageEntity.getMessage());
